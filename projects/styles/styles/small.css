@@ -1,3 +1,38 @@
+
+/* =========================
+   BASIC BROWSER NORMALIZATION
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
 /* =========================
    GENERAL STYLING
 ========================= */
@@ -193,18 +228,6 @@ h2 {
     padding: 20px 10px;
 }
 
-.course-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 8px;
-}
-
-.course-card h4 {
-    margin-bottom: 10px
-}
-
-.course-card p {
-    margin-bottom: 8px;
-}
 .filter-button {
     background-color: var(--primary-color);
     color: var(--white-color);
@@ -229,7 +252,9 @@ h2 {
     border-color: var(--secondary-color);
 }
 
-/* COURSE CARDS */
+/* =========================
+   COURSE CARDS
+========================= */
 
 .course-container {
     display: grid;
@@ -248,15 +273,38 @@ h2 {
     font-weight: 500;
 }
 
+.course-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.course-card h4 {
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    margin-top: 5px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
 .course-card.completed {
     background-color: var(--completed-color);
     border-left-color: #258044;
 }
 
-.course-card p {
-    margin-top: 5px;
-    font-size: 0.9rem;
+.course-card.completed .completion-status {
+    color: #176b35;
+    font-weight: 700;
 }
+
+.completion-status {
+    font-weight: 600;
+}
+
+/* =========================
+   TOTAL CREDITS
+========================= */
 
 .credit-total {
     background-color: var(--primary-color);

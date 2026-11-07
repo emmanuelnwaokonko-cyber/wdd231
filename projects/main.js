@@ -6,31 +6,40 @@
 const menuButton = document.querySelector("#menu-button");
 const navigation = document.querySelector("#primary-navigation");
 
-menuButton.addEventListener("click", () => {
-    navigation.classList.toggle("open");
+if (menuButton && navigation) {
+    menuButton.addEventListener("click", () => {
 
-    const isOpen = navigation.classList.contains("open");
+        navigation.classList.toggle("open");
 
-    menuButton.setAttribute("aria-expanded", isOpen);
+        const isOpen = navigation.classList.contains("open");
 
-    menuButton.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-    );
-});
+        menuButton.setAttribute("aria-expanded", isOpen);
+
+        menuButton.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+    });
+}
 
 
 /* ============================
    2. DYNAMIC FOOTER DATES
 ============================ */
 
-// Current year
-document.querySelector("#currentyear").textContent =
-    new Date().getFullYear();
+// Display current year
+const currentYear = document.querySelector("#currentyear");
 
-// Last modified date
-document.querySelector("#lastModified").textContent =
-    `Last Modified: ${document.lastModified}`;
+if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+}
+
+// Display last modified date
+const lastModified = document.querySelector("#lastModified");
+
+if (lastModified) {
+    lastModified.textContent = `Last Modified: ${document.lastModified}`;
+}
 
 
 /* ============================
@@ -48,6 +57,7 @@ const courses = [
         technology: ["Python"],
         completed: false
     },
+
     {
         subject: "WDD",
         number: 130,
@@ -58,6 +68,7 @@ const courses = [
         technology: ["HTML", "CSS"],
         completed: false
     },
+
     {
         subject: "CSE",
         number: 111,
@@ -68,6 +79,7 @@ const courses = [
         technology: ["Python"],
         completed: false
     },
+
     {
         subject: "CSE",
         number: 210,
@@ -78,6 +90,7 @@ const courses = [
         technology: ["C#"],
         completed: false
     },
+
     {
         subject: "WDD",
         number: 131,
@@ -88,6 +101,7 @@ const courses = [
         technology: ["HTML", "CSS", "JavaScript"],
         completed: false
     },
+
     {
         subject: "WDD",
         number: 231,
@@ -122,24 +136,48 @@ const cseButton = document.querySelector("#cse-courses");
 
 function displayCourses(courseList) {
 
+    if (!courseContainer || !totalCredits) {
+        return;
+    }
+
+    // Clear previous course cards
     courseContainer.innerHTML = "";
 
+    // Create a card for each course
     courseList.forEach(course => {
 
         const courseCard = document.createElement("div");
 
         courseCard.classList.add("course-card");
 
+        // Add completed styling
         if (course.completed) {
             courseCard.classList.add("completed");
         }
 
+        // Display course information
         courseCard.innerHTML = `
             <h3>${course.subject} ${course.number}</h3>
+
             <h4>${course.title}</h4>
+
             <p>${course.description}</p>
-            <p><strong>Credits:</strong> ${course.credits}</p>
-            <p><strong>Technology:</strong> ${course.technology.join(", ")}</p>
+
+            <p>
+                <strong>Credits:</strong>
+                ${course.credits}
+            </p>
+
+            <p>
+                <strong>Certificate:</strong>
+                ${course.certificate}
+            </p>
+
+            <p>
+                <strong>Technology:</strong>
+                ${course.technology.join(", ")}
+            </p>
+
             <p class="completion-status">
                 ${course.completed ? "✓ Completed" : "Not Completed"}
             </p>
@@ -150,12 +188,14 @@ function displayCourses(courseList) {
     });
 
 
-    /* Calculate total credits using reduce() */
-
+    // Calculate total credits using reduce()
     const credits = courseList.reduce((total, course) => {
+
         return total + course.credits;
+
     }, 0);
 
+    // Display total credits
     totalCredits.textContent = credits;
 
 }
@@ -167,13 +207,17 @@ function displayCourses(courseList) {
 
 function setActiveButton(activeButton) {
 
-    allButton.classList.remove("active");
+    [allButton, wddButton, cseButton].forEach(button => {
 
-    wddButton.classList.remove("active");
+        if (button) {
+            button.classList.remove("active");
+        }
 
-    cseButton.classList.remove("active");
+    });
 
-    activeButton.classList.add("active");
+    if (activeButton) {
+        activeButton.classList.add("active");
+    }
 
 }
 
@@ -182,51 +226,71 @@ function setActiveButton(activeButton) {
    7. ALL COURSES FILTER
 ============================ */
 
-allButton.addEventListener("click", () => {
+if (allButton) {
 
-    displayCourses(courses);
+    allButton.addEventListener("click", () => {
 
-    setActiveButton(allButton);
+        displayCourses(courses);
 
-});
+        setActiveButton(allButton);
+
+    });
+
+}
 
 
 /* ============================
    8. WDD COURSES FILTER
 ============================ */
 
-wddButton.addEventListener("click", () => {
+if (wddButton) {
 
-    const wddCourses = courses.filter(course => {
-        return course.subject === "WDD";
+    wddButton.addEventListener("click", () => {
+
+        const wddCourses = courses.filter(course => {
+
+            return course.subject === "WDD";
+
+        });
+
+        displayCourses(wddCourses);
+
+        setActiveButton(wddButton);
+
     });
 
-    displayCourses(wddCourses);
-
-    setActiveButton(wddButton);
-
-});
+}
 
 
 /* ============================
    9. CSE COURSES FILTER
 ============================ */
 
-cseButton.addEventListener("click", () => {
+if (cseButton) {
 
-    const cseCourses = courses.filter(course => {
-        return course.subject === "CSE";
+    cseButton.addEventListener("click", () => {
+
+        const cseCourses = courses.filter(course => {
+
+            return course.subject === "CSE";
+
+        });
+
+        displayCourses(cseCourses);
+
+        setActiveButton(cseButton);
+
     });
 
-    displayCourses(cseCourses);
-
-    setActiveButton(cseButton);
-
-});
+}
 
 
 /* ============================
    10. INITIAL COURSE DISPLAY
 ============================ */
 
+// Display all courses when the page loads
 displayCourses(courses);
+
+// Set All Courses as the active button
+setActiveButton(allButton);
