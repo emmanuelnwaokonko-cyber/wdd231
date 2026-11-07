@@ -1,0 +1,120 @@
+/* =========================
+   TABLET AND DESKTOP VIEW
+========================= */
+
+@media screen and (min-width: 700px) {
+
+    /* HEADER */
+
+    header {
+        padding: 15px 25px;
+    }
+
+    .header-container {
+        flex-wrap: nowrap;
+    }
+
+    .logo-area span {
+        font-size: 1.3rem;
+    }
+
+    /* HIDE HAMBURGER */
+
+    #menu-button {
+        display: none;
+    }
+
+    /* HORIZONTAL NAVIGATION */
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: auto;
+        margin-top: 0;
+        gap: 10px;
+    }
+
+    nav a {
+        border-top: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+    }
+
+    nav a.active {
+        border-bottom: 3px solid var(--secondary-color);
+    }
+
+    /* MAIN CONTENT */
+
+    main {
+        padding: 30px 25px;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    /* TWO-COLUMN LAYOUT */
+
+    .content-grid {
+        grid-template-columns: 2fr 1fr;
+        gap: 25px;
+        align-items: stretch;
+    }
+
+    .about-section,
+    .photo-section {
+        min-height: 350px;
+    }
+
+    .about-content {
+        padding: 25px;
+    }
+
+    .photo-content img {
+        height: 350px;
+    }
+
+    /* COURSE CARDS */
+
+    .course-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .course-card {
+        padding: 20px;
+    }
+
+    /* FOOTER */
+
+    footer {
+        padding: 30px;
+    }
+
+}
+
+/* =========================
+   LARGE DESKTOP SCREENS
+========================= */
+
+@media screen and (min-width: 1000px) {
+
+    .content-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .course-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    h1 {
+        font-size: 2.6rem;
+    }
+
+    .about-content p {
+        font-size: 1.05rem;
+    }
+
+}
