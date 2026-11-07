@@ -55,7 +55,7 @@ const courses = [
         certificate: "Web and Computer Programming",
         description: "This course introduces programming concepts including variables, decisions, calculations, loops, arrays and input/output.",
         technology: ["Python"],
-        completed: false
+        completed: true
     },
 
     {
@@ -66,7 +66,7 @@ const courses = [
         certificate: "Web and Computer Programming",
         description: "This course introduces students to the World Wide Web, website design and web development.",
         technology: ["HTML", "CSS"],
-        completed: false
+        completed: true
     },
 
     {
@@ -99,7 +99,7 @@ const courses = [
         certificate: "Web and Computer Programming",
         description: "Students learn to create dynamic websites using JavaScript and responsive design.",
         technology: ["HTML", "CSS", "JavaScript"],
-        completed: false
+        completed: true
     },
 
     {
